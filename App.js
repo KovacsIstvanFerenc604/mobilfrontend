@@ -2,28 +2,31 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Elso from './Elso.js'
 import Videokartya from './Videokartya.js'
+import F_lap from './F_lap.js'
+import Forum from './Forum.js'
+import PC_epites from './PC_epites.js'
+import Kezdolap from './Kezdolap.js'
 
-function Kezdolap({ navigation }) {
+function Kezdolap_lap({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      
-    </View>
-  );
+    <Kezdolap/>
+  )
+}
+function PC_epites_lap({ navigation }) {
+  return (
+    <PC_epites/>
+  )
 }
 
-function Pc_epites({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      
-    </View>
-  );
-}
-
-function Elso_lap({navigation}){
+function Felh_lap({navigation}){
   return(
-    <Elso/>
+    <F_lap/>
+  )
+}
+function Forum_lap({navigation}){
+  return(
+    <Forum/>
   )
 }
 function Videokartyak_lap({navigation}){
@@ -38,11 +41,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator useLegacyImplementation initialRouteName="Home">
-        <Drawer.Screen name="Kezdőlap" component={Kezdolap} />
-        <Drawer.Screen name="PC építés" component={Pc_epites} />
-        <Drawer.Screen name="Fórum" component={Forum} />
-        <Drawer.Screen name="Felhasználói lap" component={Elso_lap} />
-        <Drawer.Screen name="Videokartya" component={Videokartyak_lap} />
+        <Drawer.Screen name="Kezdőlap" component={Kezdolap_lap} />
+        <Drawer.Screen name="PC építés" component={PC_epites_lap} />
+        <Drawer.Screen name="Fórum" component={Forum_lap} />
+        <Drawer.Screen name="Felhasználói lap" component={Felh_lap} />
+        <Drawer.Screen name="Videókartya" component={Videokartyak_lap} />
         
         
       </Drawer.Navigator>
