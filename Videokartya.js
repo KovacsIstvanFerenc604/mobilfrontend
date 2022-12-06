@@ -34,7 +34,7 @@ export default class App extends Component {
     const { data, isLoading } = this.state;
 
     return (
-      <View style={{ flex: 1, padding: 24 , marginTop:40}}>
+      <View style={{ flex: 1, padding: 24 , marginTop:40,backgroundColor:'#6A4198'}}>
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
@@ -42,7 +42,7 @@ export default class App extends Component {
             renderItem={({ item }) => (
 
               <View style={{marginBottom:30}}>
-              <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
+              <Text style={{fontSize:25,color:'white',textAlign:'center',fontWeight:'bold'}}>
                 {item.videokartya_marka+" "+item.videokartya_nev}
               </Text>
               <Image   source={{uri:'http://192.168.6.5:3000/'+item.videokartya_kep+'.jpg'}} style={{width:300,height:250,alignSelf:'center'}}   />          
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    backgroundColor:"#6A4198"
   },
   button: {
     alignItems: "center",
