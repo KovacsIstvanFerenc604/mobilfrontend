@@ -40,7 +40,10 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator useLegacyImplementation initialRouteName="Home">
+      <Drawer.Navigator useLegacyImplementation
+        screenOptions={{drawerStyle: {backgroundColor: '#8D75AA', width: 200},
+        headerShown: false, drawerActiveTintColor: 'purple',
+        }} >
         <Drawer.Screen name="Kezdőlap" component={Kezdolap_lap} />
         <Drawer.Screen name="PC építés" component={PC_epites_lap} />
         <Drawer.Screen name="Fórum" component={Forum_lap} />

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,ScrollView ,SafeAreaView} from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Videokartya from './Videokartya.js'
 export default class App extends Component {
+  navigateToNew = () => {
+    this.props.navigation.navigate('Videokartya');
+}
   constructor(props) {
     super(props);
 
@@ -10,22 +15,23 @@ export default class App extends Component {
       isLoading: true
     };
   }
-
+  
   render() {
     const { data, isLoading } = this.state;
+    const { navigate } = this.props.navigation;
 
     return (
       <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         
         <Text style={styles.cim}>Választékunk</Text>
-        <Text style={styles.alcim}>Alaplapok</Text>
+        <Text style={styles.alcim}>Alaplap</Text>
         <TouchableOpacity
          style={styles.button}
-         onPress={this.onPress}
+         onPress={ this.navigateToNew }
         >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/alaplap.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/alaplap.jpg')} />
          
         </TouchableOpacity>
 
@@ -35,7 +41,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/processzor.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/processzor.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Memória</Text>
@@ -44,7 +50,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/memoria.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/memoria.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Háttértár</Text>
@@ -53,7 +59,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/hatter.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/hatter.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Táp</Text>
@@ -62,7 +68,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/tap.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/tap.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Hütő</Text>
@@ -71,7 +77,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/huto.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/huto.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Videókártya</Text>
@@ -80,7 +86,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/videokartya.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/videokartya.jpg')} />
        </TouchableOpacity>
 
        <Text style={styles.alcim}>Gépház</Text>
@@ -89,7 +95,7 @@ export default class App extends Component {
          onPress={this.onPress}
        >
          
-         <Image style={{width:250,height:250,alignSelf:'center',borderRadius:20,borderColor:'purple',borderWidth:5}} source={require('./kepek/gephaz.jpg')} />
+         <Image style={styles.kiskep} source={require('./kepek/gephaz.jpg')} />
        </TouchableOpacity>
 
           
@@ -99,6 +105,7 @@ export default class App extends Component {
     );
   }
 };
+
 
 const styles = StyleSheet.create({
 
@@ -125,14 +132,20 @@ const styles = StyleSheet.create({
 
   },
   scrollView: {
-    backgroundColor: '#6A4198',
+    marginTop:50,
+    marginBottom:10,
+    backgroundColor: '#9969D1',
     marginHorizontal: 20,
+    borderRadius:20,
+    borderColor:'purple',
+    borderWidth:5
   },
   container:{
-    backgroundColor:'#6A4198'
+    backgroundColor:'black'
   },
   alcim:{
     color:'white',
+    textAlign:'center',
     padding:8,
     fontWeight:'bold',
     fontSize:18,
@@ -142,5 +155,13 @@ const styles = StyleSheet.create({
     },
     textShadowColor:'black',
     textShadowRadius:10
+  },
+  kiskep:{
+    width:250,
+    height:250,
+    alignSelf:'center',
+    borderRadius:20,
+    borderColor:'purple',
+    borderWidth:5
   }
 });

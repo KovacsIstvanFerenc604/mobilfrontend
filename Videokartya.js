@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity } from 'react-native';
-
-export default class App extends Component {
+import { createStackNavigator } from 'react-navigation'; 
+export default class Videokartya extends Component {
   constructor(props) {
     super(props);
 
