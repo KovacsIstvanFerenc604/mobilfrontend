@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Videokartya from './Videokartya.js'
-import F_lap from './F_lap.js'
-import Forum from './Forum.js'
-import PC_epites from './PC_epites.js'
-import Kezdolap from './Kezdolap.js'
+import Videokartya from './Videokartya'
+import F_lap from './F_lap'
+import Forum from './Forum'
+import PC_epites from './PC_epites'
+import Kezdolap from './Kezdolap'
 
 function Kezdolap_lap({ navigation }) {
   return (

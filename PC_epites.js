@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,ScrollView ,SafeAreaView} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Videokartya from './Videokartya.js'
+
+
 export default class App extends Component {
-  navigateToNew = () => {
-    this.props.navigation.navigate('Videokartya');
-}
+
   constructor(props) {
     super(props);
 
@@ -18,21 +15,23 @@ export default class App extends Component {
   
   render() {
     const { data, isLoading } = this.state;
-    const { navigate } = this.props.navigation;
+
 
     return (
       <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         
         <Text style={styles.cim}>Választékunk</Text>
+
+
+
         <Text style={styles.alcim}>Alaplap</Text>
         <TouchableOpacity
          style={styles.button}
-         onPress={ this.navigateToNew }
+         onPress={ this.onPress }
         >
          
          <Image style={styles.kiskep} source={require('./kepek/alaplap.jpg')} />
-         
         </TouchableOpacity>
 
         <Text style={styles.alcim}>Processzor</Text>

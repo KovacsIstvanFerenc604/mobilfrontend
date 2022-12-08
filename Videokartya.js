@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from 'react-navigation'; 
+import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,SafeAreaView,TextInput} from 'react-native';
+
 export default class Videokartya extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,9 @@ export default class Videokartya extends Component {
     const { data, isLoading } = this.state;
 
     return (
-      <View style={{ flex: 1, padding: 24 , marginTop:40,backgroundColor:'#6A4198'}}>
+      
+      <SafeAreaView style={styles.container}>
+      <View style={styles.hatter}>
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
@@ -42,15 +44,19 @@ export default class Videokartya extends Component {
             renderItem={({ item }) => (
 
               <View style={{marginBottom:30}}>
-              <Text style={{fontSize:25,color:'white',textAlign:'center',fontWeight:'bold'}}>
-                {item.videokartya_marka+" "+item.videokartya_nev}
+              <Text style={styles.marka}>
+                {item.videokartya_marka}
               </Text>
-              <Image   source={{uri:'http://192.168.6.5:3000/'+item.videokartya_kep+'.jpg'}} style={{width:300,height:250,alignSelf:'center'}}   />          
+              <Text style={styles.tipus}>
+                {item.videokartya_nev}
+              </Text>
+              <Image   source={{uri:'http://192.168.6.5:3000/'+item.videokartya_kep+'.jpg'}} style={styles.kep}   />          
               </View>
             )}
           />
         )}
       </View>
+      </SafeAreaView>
     );
   }
 };
@@ -58,8 +64,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 10,
-    backgroundColor:"#6A4198"
+    paddingHorizontal: 2,
+    backgroundColor:"black"
   },
   button: {
     alignItems: "center",
@@ -71,5 +77,51 @@ const styles = StyleSheet.create({
   countContainer: {
     alignItems: "center",
     padding: 10
+  },
+  tipus:{
+    fontSize:18,
+    color:'white',
+    textAlign:'left',
+    marginBottom:8,
+    textShadowOffset:{
+      height:5,
+      width:5
+    },
+    textShadowColor:'black',
+    textShadowRadius:10,
+    paddingStart:10
+  },
+
+  hatter:{
+    flex:1,
+    marginTop:50,
+    marginBottom:10,
+    backgroundColor: '#9969D1',
+    marginHorizontal: 20,
+    borderRadius:20,
+    borderColor:'purple',
+    borderWidth:5
+  },
+  marka:{
+    textAlign:'left',
+    fontSize:21,
+    color:'white',
+    fontWeight:'bold',
+    margin:5,
+    textShadowOffset:{
+      height:5,
+      width:5
+    },
+    textShadowColor:'black',
+    textShadowRadius:10
+  },
+  kep:{
+    width:150,
+    height:150,
+    alignSelf:'flex-start',
+    borderRadius:20,
+    borderColor:'purple',
+    borderWidth:5,
+    marginLeft:10
   }
 });
