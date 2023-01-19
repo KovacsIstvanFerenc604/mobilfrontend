@@ -1,0 +1,5 @@
+picker:
+1.fetch az alaplap végpontra
+2.picker+map
+3.picker value
+4.alert a changere

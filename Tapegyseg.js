@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,SafeAreaView,TextInput} from 'react-native';
 const IP = require('./ipcim');
 
-export default class Gephaz extends Component {
+export default class Tapegyseg extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ export default class Gephaz extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch(IP.ipcim+'gephaz');
+      const response = await fetch(IP.ipcim+'tapegyseg');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });
@@ -37,45 +37,21 @@ export default class Gephaz extends Component {
     return (
       
       <SafeAreaView style={styles.container}>
-
       <View style={styles.hatter}>
-      
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
-            keyExtractor={({ gephaz_id}, index) => gephaz_id}
+            keyExtractor={({ tapegyseg_id}, index) => tapegyseg_id}
             renderItem={({ item }) => (
-              
-              <View style={[{marginBottom:30}]}>
-                <View>
-                <Text style={styles.marka}>
-                {item.gephaz_marka}
+
+              <View style={{marginBottom:30}}>
+              <Text style={styles.marka}>
+                {item.tapegyseg_marka}
               </Text>
               <Text style={styles.tipus}>
-                {item.gephaz_nev}
+                {item.tapegyseg_nev}
               </Text>
-              </View>
-              <View style={{flexDirection: "row"}}>
-              <View style={{flex:2}}>
-              <Image   source={{uri: IP.ipcim+item.gephaz_kep+'.jpg'}} style={styles.kep}   />
-              </View> 
-
-
-                <View style={{flex:2}}>
-              <Text style={styles.adatok}>
-                Alaplap típus:
-                {item.gephaz_alaplaptipus}
-              </Text>
-              <Text style={styles.adatok}>
-                Beépített ventilátor:  
-                { item.gephaz_beepitettventi}
-              </Text>
-              <Text style={styles.adatok}>
-                Audio csatlakozó:
-                 {item.gephaz_audiocsatlakozo}
-              </Text>
-              </View>
-              </View>    
+              <Image source={{uri: IP.ipcim+item.tapegyseg_kep+'.jpg'}} style={styles.kep}   />          
               </View>
             )}
           />
@@ -148,18 +124,5 @@ const styles = StyleSheet.create({
     borderColor:'purple',
     borderWidth:5,
     marginLeft:10
-  },
-  adatok:{
-    fontSize:14,
-    color:'white',
-    textAlign:'left',
-    marginBottom:8,
-    textShadowOffset:{
-      height:5,
-      width:5
-    },
-    textShadowColor:'black',
-    textShadowRadius:10,
-    paddingStart:10
   }
 });

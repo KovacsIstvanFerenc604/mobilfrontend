@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,SafeAreaView,TextInput} from 'react-native';
 const IP = require('./ipcim');
 
-export default class Gephaz extends Component {
+export default class Processzorok extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ export default class Gephaz extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch(IP.ipcim+'gephaz');
+      const response = await fetch(IP.ipcim+'processzor');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });
@@ -43,36 +43,36 @@ export default class Gephaz extends Component {
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
-            keyExtractor={({ gephaz_id}, index) => gephaz_id}
+            keyExtractor={({ processzor_id}, index) => processzor_id}
             renderItem={({ item }) => (
               
               <View style={[{marginBottom:30}]}>
                 <View>
                 <Text style={styles.marka}>
-                {item.gephaz_marka}
+                {item.processzor_marka}
               </Text>
               <Text style={styles.tipus}>
-                {item.gephaz_nev}
+                {item.processzor_nev}
               </Text>
               </View>
               <View style={{flexDirection: "row"}}>
               <View style={{flex:2}}>
-              <Image   source={{uri: IP.ipcim+item.gephaz_kep+'.jpg'}} style={styles.kep}   />
+              <Image   source={{uri: IP.ipcim+item.processzor_kep+'.png'}} style={styles.kep}   />
               </View> 
 
 
                 <View style={{flex:2}}>
               <Text style={styles.adatok}>
-                Alaplap típus:
-                {item.gephaz_alaplaptipus}
+                Teljesítmény:
+                {item.processzor_teljesitmeny}
               </Text>
               <Text style={styles.adatok}>
-                Beépített ventilátor:  
-                { item.gephaz_beepitettventi}
+                Foglalat:  
+                { item.processzor_foglalat}
               </Text>
               <Text style={styles.adatok}>
-                Audio csatlakozó:
-                 {item.gephaz_audiocsatlakozo}
+                Gyártási technológia:
+                 {item.processzor_gyart_tech}
               </Text>
               </View>
               </View>    

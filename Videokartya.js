@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,SafeAreaView,TextInput} from 'react-native';
+const IP = require('./ipcim');
 
 export default class Videokartya extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class Videokartya extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch('http://192.168.6.5:3000/videokartya');
+      const response = await fetch(IP.ipcim+'videokartya');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });
@@ -36,21 +37,45 @@ export default class Videokartya extends Component {
     return (
       
       <SafeAreaView style={styles.container}>
+
       <View style={styles.hatter}>
+      
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
             keyExtractor={({ videokartya_id}, index) => videokartya_id}
             renderItem={({ item }) => (
-
-              <View style={{marginBottom:30}}>
-              <Text style={styles.marka}>
+              
+              <View style={[{marginBottom:30}]}>
+                <View>
+                <Text style={styles.marka}>
                 {item.videokartya_marka}
               </Text>
               <Text style={styles.tipus}>
                 {item.videokartya_nev}
               </Text>
-              <Image   source={{uri:'http://192.168.6.5:3000/'+item.videokartya_kep+'.jpg'}} style={styles.kep}   />          
+              </View>
+              <View style={{flexDirection: "row"}}>
+              <View style={{flex:2}}>
+              <Image   source={{uri: IP.ipcim+item.videokartya_kep+'.jpg'}} style={styles.kep}   />
+              </View> 
+
+
+                <View style={{flex:2}}>
+              <Text style={styles.adatok}>
+                Belső MB: 
+                {item.videokartya_belsomb}
+              </Text>
+              <Text style={styles.adatok}>
+                Foglalat: 
+                {item.videokartya_foglalat}
+              </Text>
+              <Text style={styles.adatok}>
+                Fogyasztás: 
+                 {item.videokartya_fogyasztas} Watt
+              </Text>
+              </View>
+              </View>    
               </View>
             )}
           />
@@ -123,5 +148,18 @@ const styles = StyleSheet.create({
     borderColor:'purple',
     borderWidth:5,
     marginLeft:10
+  },
+  adatok:{
+    fontSize:14,
+    color:'white',
+    textAlign:'left',
+    marginBottom:8,
+    textShadowOffset:{
+      height:5,
+      width:5
+    },
+    textShadowColor:'black',
+    textShadowRadius:10,
+    paddingStart:10
   }
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,SafeAreaView,TextInput} from 'react-native';
 const IP = require('./ipcim');
 
-export default class Gephaz extends Component {
+export default class Alaplapok extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ export default class Gephaz extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch(IP.ipcim+'gephaz');
+      const response = await fetch(IP.ipcim+'alaplap');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });
@@ -43,36 +43,36 @@ export default class Gephaz extends Component {
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
-            keyExtractor={({ gephaz_id}, index) => gephaz_id}
+            keyExtractor={({ alaplap_id}, index) => alaplap_id}
             renderItem={({ item }) => (
               
               <View style={[{marginBottom:30}]}>
                 <View>
                 <Text style={styles.marka}>
-                {item.gephaz_marka}
+                {item.alaplap_marka}
               </Text>
               <Text style={styles.tipus}>
-                {item.gephaz_nev}
+                {item.alaplap_nev}
               </Text>
               </View>
               <View style={{flexDirection: "row"}}>
               <View style={{flex:2}}>
-              <Image   source={{uri: IP.ipcim+item.gephaz_kep+'.jpg'}} style={styles.kep}   />
+              <Image   source={{uri: IP.ipcim+item.alaplap_kep+'.png'}} style={styles.kep}   />
               </View> 
 
 
                 <View style={{flex:2}}>
               <Text style={styles.adatok}>
-                Alaplap típus:
-                {item.gephaz_alaplaptipus}
+                Formátum:
+                {item.alaplap_formatum}
               </Text>
               <Text style={styles.adatok}>
-                Beépített ventilátor:  
-                { item.gephaz_beepitettventi}
+                Memória foglalat:  
+                { item.alaplap_memoria_foglalat}
               </Text>
               <Text style={styles.adatok}>
-                Audio csatlakozó:
-                 {item.gephaz_audiocsatlakozo}
+                CPU foglalat:
+                 {item.alaplap_processzor_foglalat}
               </Text>
               </View>
               </View>    
