@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, View,Text} from 'react-native';
+import { Button, StyleSheet, View,Text, TouchableOpacity} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { black } from 'jest-util/node_modules/chalk';
 const IP = require('./ipcim'); 
@@ -84,8 +84,35 @@ export default class ButtonBasics extends Component {
     } finally {
       this.setState({ isLoading: false });
     }
-  }
 
+
+    
+  }
+  felvitel=()=>{
+    alert("Választott alaplap ID-ja:"+this.state.ki_alap)
+    var bemenet={
+      bevitel1:this.state.ki_alap,
+      bevitel2:this.state.ki_alap2,
+      bevitel3:this.state.ki_alap3,
+      bevitel4:this.state.ki_alap4,
+      bevitel5:this.state.ki_alap5
+
+     
+    }
+  
+fetch(IP.ipcim+'osszeallitott_gep', {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    }
+  
+  )
+  .then(x => x.text())
+  .then(y => {
+    alert(y)
+
+  });
+  }
   componentDidMount() {
     this.lefajta();
   }
@@ -104,7 +131,7 @@ export default class ButtonBasics extends Component {
               selectedValue={this.state.ki_alap}
               onValueChange={(itemValue) => this.setState({ki_alap:itemValue})}>
               {this.state.data.map(item=>
-                <Picker.Item label={item.alaplap_marka} value={item.alaplap_id} />
+                <Picker.Item label={item.alaplap_nev} value={item.alaplap_id} />
               )}                                  
       </Picker>
 
@@ -115,7 +142,7 @@ export default class ButtonBasics extends Component {
               selectedValue={this.state.ki_alap2}
               onValueChange={(itemValue) => this.setState({ki_alap2:itemValue})}>
               {this.state.data2.map(item=>
-                <Picker.Item label={item.processzor_marka} value={item.processzor_id} />
+                <Picker.Item label={item.processzor_nev} value={item.processzor_id} />
               )}                                  
       </Picker>
 
@@ -126,7 +153,7 @@ export default class ButtonBasics extends Component {
               selectedValue={this.state.ki_alap3}
               onValueChange={(itemValue) => this.setState({ki_alap3:itemValue})}>
               {this.state.data3.map(item=>
-                <Picker.Item label={item.videokartya_marka} value={item.videokartya_id} />
+                <Picker.Item label={item.videokartya_nev} value={item.videokartya_id} />
               )}                                  
       </Picker>
 
@@ -137,7 +164,7 @@ export default class ButtonBasics extends Component {
               selectedValue={this.state.ki_alap4}
               onValueChange={(itemValue) => this.setState({ki_alap4:itemValue})}>
               {this.state.data4.map(item=>
-                <Picker.Item label={item.memoria_marka} value={item.memoria_id} />
+                <Picker.Item label={item.memoria_nev} value={item.memoria_id} />
               )}                                  
       </Picker>
 
@@ -149,9 +176,15 @@ export default class ButtonBasics extends Component {
               selectedValue={this.state.ki_alap5}
               onValueChange={(itemValue) => this.setState({ki_alap5:itemValue})}>
               {this.state.data5.map(item=>
-                <Picker.Item label={item.tapegyseg_marka} value={item.tapegyseg_id} />
+                <Picker.Item label={item.tapegyseg_nev} value={item.tapegyseg_id} />
               )}                                  
       </Picker>
+
+      <TouchableOpacity style={styles.felvitel_gomb} onPress={()=>this.felvitel()}>
+        <Text style={styles.felvitel_szoveg}>
+          Felvitel
+        </Text>
+      </TouchableOpacity>
     </View>
     </View>
       
@@ -198,5 +231,17 @@ const styles = StyleSheet.create({
   alkatresz:{
     fontWeight:'bold',
     fontSize:18
+  },
+  felvitel_gomb:{
+    alignSelf:'center',
+    borderColor:'black',
+    borderWidth:3,
+    borderRadius:20
+    
+  },
+  felvitel_szoveg:{
+    fontSize:24,
+    padding:5
   }
+
 });
